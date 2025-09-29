@@ -1,5 +1,4 @@
 
-
 class Bateau:
 
     def __init__(self, ligne : int, colonne : int, longueur=1, vertical=False):
