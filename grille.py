@@ -25,10 +25,10 @@ class Grille :
         # vérifier que toutes les positions sont dans la grille
 
         for (ligne, colonne) in bateau.positions:
-            if ligne < 0 or colonne < 0 or colonne >= self.nombre_colonnes:
+            if ligne < 0 or ligne >= len(self.matrice) // self.nombre_colonnes:
                 raise IndexError("Le bateau ne rentre pas dans la grille")
 
-            if self.index(ligne, colonne) >= len(self.matrice):
+            if colonne < 0 or colonne >= self.nombre_colonnes:
                 raise IndexError("Le bateau ne rentre pas dans la grille")
 
         for b in self.bateaux:
@@ -37,6 +37,7 @@ class Grille :
 
         for (ligne, colonne) in bateau.positions:
             self.matrice[self.index(ligne, colonne)] = getattr(bateau, "marque", "⛵")
+
         self.bateaux.append(bateau)
 
     def __str__(self) -> str :
