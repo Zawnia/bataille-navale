@@ -10,7 +10,13 @@ class Grille :
 
 
     def tirer(self, x : int, y : int):
-        self.matrice[self.nombre_colonnes*x + y] = "x"
+        if 0 <= x < len(self.matrice) // self.nombre_colonnes and 0 <= y < self.nombre_colonnes:
+
+            index = self.nombre_colonnes * x + y
+            self.matrice[index] = "x"
+
+        else:
+            raise IndexError("Coordonnées hors de la grille")
 
 
     def __str__(self) -> str :
