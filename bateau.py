@@ -1,4 +1,3 @@
-
 class Bateau:
 
     def __init__(self, ligne : int, colonne : int, longueur=1, vertical=False):
@@ -22,6 +21,37 @@ class Bateau:
                 pos.append((self.ligne, self.colonne+i))
 
         return pos
+
+    def coule(self, grille) -> bool:
+
+        for (ligne, colonne) in self.positions :
+            if not grille.matrice[grille.index(ligne,colonne)] == "x":
+                return False
+        return True
+
+#Filles
+
+class PorteAvion(Bateau) :
+    def __init__(self, ligne : int, colonne : int, vertical=False):
+        super().__init__(ligne, colonne, vertical=vertical, longueur=4)
+        self.marque = "🚢"
+
+class Croiseur(Bateau) :
+    def __init__(self, ligne : int, colonne : int, vertical=False):
+        super().__init__(ligne, colonne, vertical=vertical, longueur=3)
+        self.marque = "⛴"
+
+class Torpilleur(Bateau) :
+    def __init__(self, ligne : int, colonne : int, vertical=False):
+        super().__init__(ligne, colonne, vertical=vertical, longueur=2)
+        self.marque = "🚣"
+
+class SousMarin(Bateau) :
+    def __init__(self, ligne : int, colonne : int, vertical=False):
+        super().__init__(ligne, colonne, vertical=vertical, longueur=2)
+        self.marque = "🐟"
+
+
 
 
 

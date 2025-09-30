@@ -14,15 +14,13 @@ class Grille :
         """Transforme (ligne, colonne) en index dans self.matrice."""
         return ligne * self.nombre_colonnes + colonne
 
-
-    def tirer(self, ligne : int, colonne : int):
+    def tirer(self, ligne : int, colonne : int, touche='x'):
         if 0 <= ligne < len(self.matrice) // self.nombre_colonnes and 0 <= colonne < self.nombre_colonnes:
-            self.matrice[self.index(ligne, colonne)] = "x"
+            self.matrice[self.index(ligne, colonne)] = touche
         else:
             raise IndexError("Coordonnées hors de la grille")
 
     def ajoute(self, bateau: Bateau) -> None:
-        # vérifier que toutes les positions sont dans la grille
 
         for (ligne, colonne) in bateau.positions:
             if ligne < 0 or ligne >= len(self.matrice) // self.nombre_colonnes:
