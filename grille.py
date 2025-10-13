@@ -10,6 +10,14 @@ class Grille :
         self.nombre_colonnes = nombre_colonnes
         self.bateaux = []
 
+    @property
+    def occupe(self):
+        occupe = []
+        for bateau in self.bateaux :
+            for pos in bateau.positions :
+                occupe.append(pos)
+        return occupe
+
     def index(self, ligne: int, colonne: int) -> int:
         """Transforme (ligne, colonne) en index dans self.matrice."""
         return ligne * self.nombre_colonnes + colonne
@@ -38,6 +46,28 @@ class Grille :
 
         self.bateaux.append(bateau)
 
+    def affiche_visible(self, flotte : list):
+        L, C = len(self.matrice)//self.nombre_colonnes, self.nombre_colonnes
+        vue = ["∿"] * (L * C)
+
+        # Conserver ce que le joueur doit voir
+        for i, v in enumerate(self.matrice):
+            if v in ("x", "💣"):  # raté ou touché
+                vue[i] = v
+
+        for b in flotte:
+            if b.coule(self):
+                for (l, c) in b.positions:
+                    idx = l * C + c
+                    vue[idx] = b.marque
+
+        # 3) Affichage
+        for r in range(L):
+            ligne = vue[r * C:(r + 1) * C]
+            print(" ".join(ligne))
+
+
+
     def __str__(self) -> str :
         sortie = ""
         for i in range(len(self.matrice)):
@@ -47,11 +77,4 @@ class Grille :
 
             sortie += self.matrice[i]
         return sortie
-
-
-
-
-
-
-
 

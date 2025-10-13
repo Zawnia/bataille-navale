@@ -9,14 +9,10 @@ class Bateau:
     @property
     def positions(self):
         pos = []
-
         if self.vertical :
-
             for i in range(self.longueur):
                 pos.append((self.ligne+i, self.colonne))
-
         else :
-
             for i in range(self.longueur):
                 pos.append((self.ligne, self.colonne+i))
 
@@ -25,9 +21,13 @@ class Bateau:
     def coule(self, grille) -> bool:
 
         for (ligne, colonne) in self.positions :
-            if not grille.matrice[grille.index(ligne,colonne)] == "x":
+            val = grille.matrice[grille.index(ligne,colonne)]
+            if val not in ("x", "💣"):
                 return False
         return True
+
+    def set_vertical(self, vertical=False):
+        self.vertical = vertical
 
 #Filles
 
@@ -50,9 +50,3 @@ class SousMarin(Bateau) :
     def __init__(self, ligne : int, colonne : int, vertical=False):
         super().__init__(ligne, colonne, vertical=vertical, longueur=2)
         self.marque = "🐟"
-
-
-
-
-
-
