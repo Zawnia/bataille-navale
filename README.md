@@ -30,7 +30,6 @@ Suivez ensuite les instructions affichées dans le terminal.
 ## Structure du projet
 
 - `main.py` : point d’entrée du programme
-- `main_features.py` : fonctionnalités principales du jeu
 - `bateau.py` : définition et gestion des bateaux
 - `grille.py` : gestion des grilles de jeu
 - `utils.py` : fonctions utilitaires
